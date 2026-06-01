@@ -1,5 +1,5 @@
 # oai-cli
-
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 Developer-first CLI for the OpenAI API, built on top of the official `openai-python` SDK.
 
 `oai-cli` is designed for day-to-day engineering work: quick prompts, dry-run payload inspection, local request logs, model comparisons, JSON schema validation, file and batch helpers, prompt linting, redaction, and AI-assisted review workflows from pipes.
