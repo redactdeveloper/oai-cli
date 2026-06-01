@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oai-workbench-cli"
+version = "0.1.0"
+description = "Developer-first CLI wrapper around the official OpenAI Python SDK."
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "redactdeveloper" }]
+keywords = ["openai", "cli", "developer-tools", "typer", "rich"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development",
+]
+dependencies = [
+  "openai>=1.0.0",
+  "typer>=0.12.0",
+  "rich>=13.7.0",
+  "pydantic>=2.6.0",
+  "platformdirs>=4.2.0",
+  "jsonschema>=4.22.0",
+  "tomli>=2.0.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.5.0",
+  "mypy>=1.10.0",
+  "types-jsonschema>=4.24.0",
+]
+
+[project.scripts]
+oai-cli = "openai_py_cli.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["openai_py_cli"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [
+  ".venv",
+  ".cache",
+  ".local",
+  "Downloads",
+  "backupfedora",
+  "google-cloud-sdk",
+  "userbot",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["openai_py_cli"]
+
+[[tool.mypy.overrides]]
+module = "tomli"
+ignore_missing_imports = true
